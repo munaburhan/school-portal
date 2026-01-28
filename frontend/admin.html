@@ -5,12 +5,83 @@
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="style.css">
 
+    <style>
+        /* Admin Dashboard UI blocks (page-only) */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background: #ecf0f1;
+            border: 1px solid #d9e0e3;
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+
+        .card h3 {
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+            font-size: 1.05rem;
+        }
+
+        .card .value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.25rem;
+        }
+
+        .card .hint {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .section {
+            margin-top: 2rem;
+        }
+
+        .section h3 {
+            margin-bottom: 0.75rem;
+            color: #2c3e50;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 0.75rem;
+        }
+
+        .action-btn {
+            background: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .action-btn:hover {
+            background: #2980b9;
+        }
+
+        /* Make sure links in sidebar look clean */
+        .sidebar a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
 
     <!-- Header -->
-     <header>
+    <header>
         <h1 id="title-en">School Portal</h1>
         <h1 id="title-ar" style="display:none;">بوابة المدرسة</h1>
 
@@ -25,22 +96,22 @@
     <div class="container">
 
         <!-- Sidebar -->
-              <nav class="sidebar">
+        <nav class="sidebar">
             <!-- English Menu -->
-<ul id="menu-en">
-    <li><a href="admin.html">Admin Dashboard</a></li>
-    <li><a href="teacher.html">Teacher Dashboard</a></li>
-    <li><a href="student.html">Student Dashboard</a></li>
-    <li><a href="index.html">Home</a></li>
-</ul>
+            <ul id="menu-en">
+                <li><a href="admin.html">Admin Dashboard</a></li>
+                <li><a href="teacher.html">Teacher Dashboard</a></li>
+                <li><a href="student.html">Student Dashboard</a></li>
+                <li><a href="index.html">Home</a></li>
+            </ul>
 
             <!-- Arabic Menu -->
             <ul id="menu-ar" style="display:none;">
-    <li><a href="admin.html">لوحة تحكم الإدارة</a></li>
-    <li><a href="teacher.html">لوحة تحكم المعلم</a></li>
-    <li><a href="student.html">لوحة تحكم الطالب</a></li>
-    <li><a href="index.html">الرئيسية</a></li>
-</ul>
+                <li><a href="admin.html">لوحة تحكم الإدارة</a></li>
+                <li><a href="teacher.html">لوحة تحكم المعلم</a></li>
+                <li><a href="student.html">لوحة تحكم الطالب</a></li>
+                <li><a href="index.html">الرئيسية</a></li>
+            </ul>
         </nav>
 
         <!-- Content Area -->
@@ -55,6 +126,64 @@
             <p id="content-text-ar" style="display:none;">
                 مرحبًا بك في لوحة تحكم المسؤول. أدر جميع عمليات المدرسة من هنا.
             </p>
+
+            <!-- Stats Cards -->
+            <div class="cards">
+                <div class="card">
+                    <h3 id="card1-title-en">Total Teachers</h3>
+                    <h3 id="card1-title-ar" style="display:none;">عدد المعلمين</h3>
+
+                    <div class="value">—</div>
+
+                    <div class="hint" id="card1-hint-en">View and manage all teachers.</div>
+                    <div class="hint" id="card1-hint-ar" style="display:none;">عرض وإدارة جميع المعلمين.</div>
+                </div>
+
+                <div class="card">
+                    <h3 id="card2-title-en">Total Students</h3>
+                    <h3 id="card2-title-ar" style="display:none;">عدد الطلاب</h3>
+
+                    <div class="value">—</div>
+
+                    <div class="hint" id="card2-hint-en">Track students and their progress.</div>
+                    <div class="hint" id="card2-hint-ar" style="display:none;">متابعة الطلاب وتقدمهم.</div>
+                </div>
+
+                <div class="card">
+                    <h3 id="card3-title-en">Total Classes</h3>
+                    <h3 id="card3-title-ar" style="display:none;">عدد الصفوف</h3>
+
+                    <div class="value">—</div>
+
+                    <div class="hint" id="card3-hint-en">Create and organize classes.</div>
+                    <div class="hint" id="card3-hint-ar" style="display:none;">إنشاء وتنظيم الصفوف.</div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="section">
+                <h3 id="actions-title-en">Quick Actions</h3>
+                <h3 id="actions-title-ar" style="display:none;">إجراءات سريعة</h3>
+
+                <div class="actions">
+                    <button class="action-btn" id="action1-en">Add Teacher</button>
+                    <button class="action-btn" id="action1-ar" style="display:none;">إضافة معلم</button>
+
+                    <button class="action-btn" id="action2-en">Add Student</button>
+                    <button class="action-btn" id="action2-ar" style="display:none;">إضافة طالب</button>
+
+                    <button class="action-btn" id="action3-en">Create Class</button>
+                    <button class="action-btn" id="action3-ar" style="display:none;">إنشاء صف</button>
+                </div>
+
+                <p id="actions-note-en" style="margin-top: 0.8rem; color:#555;">
+                    (Demo UI) These buttons will be connected to the backend later.
+                </p>
+                <p id="actions-note-ar" style="display:none; margin-top: 0.8rem; color:#555;">
+                    (واجهة تجريبية) سيتم ربط هذه الأزرار مع النظام الخلفي لاحقًا.
+                </p>
+            </div>
+
         </main>
 
     </div>
@@ -70,14 +199,12 @@
         function setEnglish() {
             document.documentElement.lang = "en";
             document.documentElement.dir = "ltr";
-
             toggleLanguage("en");
         }
 
         function setArabic() {
             document.documentElement.lang = "ar";
             document.documentElement.dir = "rtl";
-
             toggleLanguage("ar");
         }
 
