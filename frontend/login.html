@@ -1,231 +1,285 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <title>School Portal Login</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* Login Page Specific Styles */
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>School Portal Login</title>
 
-        .container {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-        }
+  <link rel="stylesheet" href="style.css">
 
-        .login-card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            padding: 3rem 2.5rem;
-            width: 100%;
-            max-width: 400px;
-        }
+  <style>
+    /* Login Page Specific Styles */
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
 
-        .login-card h2 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 1.5rem;
-            font-size: 1.6rem;
-        }
+    .container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
+    .login-card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 3rem 2.5rem;
+      width: 100%;
+      max-width: 420px;
+    }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #333;
-            font-weight: 500;
-        }
+    .login-card h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 1.5rem;
+      font-size: 1.6rem;
+    }
 
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #bdc3c7;
-            border-radius: 4px;
-            font-size: 1rem;
-            font-family: inherit;
-            transition: border-color 0.2s ease;
-        }
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
 
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #3498db;
-            box-shadow: 0 0 4px rgba(52, 152, 219, 0.3);
-        }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #333;
+      font-weight: 500;
+    }
 
-        .login-button {
-            width: 100%;
-            padding: 0.75rem;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #bdc3c7;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color 0.2s ease;
+      background: #fff;
+    }
 
-        .login-button:hover {
-            background-color: #2980b9;
-        }
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #3498db;
+      box-shadow: 0 0 4px rgba(52, 152, 219, 0.3);
+    }
 
-        .login-button:active {
-            background-color: #1e5e96;
-        }
+    /* Reliable select arrow (works RTL/LTR) */
+    .select-wrap {
+      position: relative;
+      width: 100%;
+    }
 
-        footer {
-            margin-top: auto;
-        }
-    </style>
+    .select-wrap select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      padding-right: 42px; /* space for arrow on right */
+    }
+
+    .select-wrap::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 14px;
+      transform: translateY(-50%);
+      pointer-events: none;
+
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 7px solid #475569;
+    }
+
+    html[dir="rtl"] .select-wrap select {
+      direction: rtl;
+      text-align: right;
+      padding-right: 0.75rem;
+      padding-left: 42px; /* space for arrow on left */
+    }
+
+    html[dir="rtl"] .select-wrap::after {
+      right: auto;
+      left: 14px;
+    }
+
+    .login-button {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      margin-top: 0.25rem;
+    }
+
+    .login-button:hover {
+      background-color: #2980b9;
+    }
+
+    .login-button:active {
+      background-color: #1e5e96;
+    }
+
+    footer {
+      margin-top: auto;
+    }
+
+    /* Optional: tiny smoothness */
+    .fade {
+      transition: opacity 0.12s ease;
+    }
+  </style>
 </head>
 
 <body>
 
-    <!-- Header -->
-    <header>
-        <h1 id="title-en">School Portal</h1>
-        <h1 id="title-ar" style="display:none;">بوابة المدرسة</h1>
+  <!-- Header -->
+  <header>
+    <h1 id="title-en" class="fade">School Portal</h1>
+    <h1 id="title-ar" class="fade" style="display:none;">بوابة المدرسة</h1>
 
-        <!-- Language Switch -->
-        <div>
-            <button onclick="setEnglish()">EN</button>
-            <button onclick="setArabic()">AR</button>
-        </div>
-    </header>
-
-    <!-- Login Container -->
-    <div class="container">
-        <div class="login-card">
-            <h2 id="login-title-en">Login</h2>
-            <h2 id="login-title-ar" style="display:none;">تسجيل الدخول</h2>
-
-            <form onsubmit="handleLogin(event)">
-                <!-- Email Field -->
-                <div class="form-group">
-                    <label for="email" id="email-label-en">Email</label>
-                    <label for="email" id="email-label-ar" style="display:none;">البريد الإلكتروني</label>
-                    <input type="email" id="email" placeholder="" required>
-                </div>
-
-                <!-- Password Field -->
-                <div class="form-group">
-                    <label for="password" id="password-label-en">Password</label>
-                    <label for="password" id="password-label-ar" style="display:none;">كلمة المرور</label>
-                    <input type="password" id="password" placeholder="" required>
-                </div>
-
-                <!-- Role Selector -->
-                <div class="form-group">
-                    <label for="role" id="role-label-en">Role</label>
-                    <label for="role" id="role-label-ar" style="display:none;">الدور</label>
-                    <select id="role" required>
-                        <option value="admin" id="role-admin-en">Admin</option>
-                        <option value="teacher" id="role-teacher-en">Teacher</option>
-                        <option value="student" id="role-student-en">Student</option>
-                    </select>
-                </div>
-
-                <!-- Login Button -->
-                <button type="submit" class="login-button" id="login-button-en">Login</button>
-                <button type="submit" class="login-button" id="login-button-ar" style="display:none;">تسجيل الدخول</button>
-            </form>
-        </div>
+    <!-- Language Switch -->
+    <div>
+      <button type="button" onclick="setEnglish()">EN</button>
+      <button type="button" onclick="setArabic()">AR</button>
     </div>
+  </header>
 
-    <!-- Footer -->
-    <footer>
-        <p id="footer-en">© 2026 School Portal</p>
-        <p id="footer-ar" style="display:none;">© 2026 بوابة المدرسة</p>
-    </footer>
+  <!-- Login Container -->
+  <div class="container">
+    <div class="login-card">
 
-    <!-- Language & Login Script -->
-    <script>
-        function setEnglish() {
-            document.documentElement.lang = "en";
-            document.documentElement.dir = "ltr";
-            toggleLanguage("en");
-        }
+      <h2 id="login-title-en" class="fade">School Portal Login</h2>
+      <h2 id="login-title-ar" class="fade" style="display:none;">تسجيل الدخول إلى بوابة المدرسة</h2>
 
-        function setArabic() {
-            document.documentElement.lang = "ar";
-            document.documentElement.dir = "rtl";
-            toggleLanguage("ar");
-        }
+      <form id="loginForm">
+        <!-- Email Field -->
+        <div class="form-group">
+          <label for="email" id="email-label-en" class="fade">Email</label>
+          <label for="email" id="email-label-ar" class="fade" style="display:none;">البريد الإلكتروني</label>
+          <input type="email" id="email" required>
+        </div>
 
-        function toggleLanguage(lang) {
-            const enElements = document.querySelectorAll("[id$='-en']");
-            const arElements = document.querySelectorAll("[id$='-ar']");
+        <!-- Password Field -->
+        <div class="form-group">
+          <label for="password" id="password-label-en" class="fade">Password</label>
+          <label for="password" id="password-label-ar" class="fade" style="display:none;">كلمة المرور</label>
+          <input type="password" id="password" required>
+        </div>
 
-            enElements.forEach(el => el.style.display = lang === "en" ? "block" : "none");
-            arElements.forEach(el => el.style.display = lang === "ar" ? "block" : "none");
+        <!-- Role Selector (FIXED bilingual label + spacing) -->
+        <div class="form-group">
+          <label for="role" id="role-label-en" class="fade">Role</label>
+          <label for="role" id="role-label-ar" class="fade" style="display:none;">الدور</label>
 
-            // Update select options
-            updateSelectOptions(lang);
-        }
+          <div class="select-wrap">
+            <select id="role" name="role" required>
+              <option value="admin">Admin</option>
+              <option value="teacher">Teacher</option>
+              <option value="student">Student</option>
+            </select>
+          </div>
+        </div>
 
-        function updateSelectOptions(lang) {
-            const roleSelect = document.getElementById("role");
-            const adminOption = roleSelect.querySelector('option[value="admin"]');
-            const teacherOption = roleSelect.querySelector('option[value="teacher"]');
-            const studentOption = roleSelect.querySelector('option[value="student"]');
+        <!-- Login Button -->
+        <button type="submit" class="login-button" id="login-button-en">Login</button>
+        <button type="submit" class="login-button" id="login-button-ar" style="display:none;">تسجيل الدخول</button>
+      </form>
 
-            if (lang === "en") {
-                adminOption.textContent = "Admin";
-                teacherOption.textContent = "Teacher";
-                studentOption.textContent = "Student";
-            } else {
-                adminOption.textContent = "مسؤول";
-                teacherOption.textContent = "معلم";
-                studentOption.textContent = "طالب";
-            }
-        }
+    </div>
+  </div>
 
-        function handleLogin(event) {
-            event.preventDefault();
+  <!-- Footer -->
+  <footer>
+    <p id="footer-en" class="fade">© 2026 School Portal</p>
+    <p id="footer-ar" class="fade" style="display:none;">© 2026 بوابة المدرسة</p>
+  </footer>
 
-            const email = document.getElementById("email").value.trim();
-            const password = document.getElementById("password").value.trim();
-            const role = document.getElementById("role").value;
+  <script>
+    function setEnglish() {
+      setLang("en", "ltr");
+    }
 
-            // Validate fields
-            if (!email || !password) {
-                const lang = document.documentElement.lang;
-                const message = lang === "en" 
-                    ? "Please fill in all fields." 
-                    : "يرجى ملء جميع الحقول.";
-                alert(message);
-                return;
-            }
+    function setArabic() {
+      setLang("ar", "rtl");
+    }
 
-            // Redirect based on role
-            const redirectMap = {
-                admin: "admin.html",
-                teacher: "teacher.html",
-                student: "student.html"
-            };
+    function setLang(lang, dir) {
+      document.documentElement.lang = lang;
+      document.documentElement.dir = dir;
+      toggleLanguage(lang);
+    }
 
-            window.location.href = redirectMap[role];
-        }
+    function toggleLanguage(lang) {
+      const enElements = document.querySelectorAll("[id$='-en']");
+      const arElements = document.querySelectorAll("[id$='-ar']");
 
-        // Initialize select options on page load
-        window.addEventListener("load", () => {
-            const lang = document.documentElement.lang;
-            updateSelectOptions(lang);
-        });
-    </script>
+      enElements.forEach(el => el.style.display = (lang === "en") ? displayFor(el) : "none");
+      arElements.forEach(el => el.style.display = (lang === "ar") ? displayFor(el) : "none");
+
+      updateSelectOptions(lang);
+    }
+
+    function displayFor(el) {
+      const tag = el.tagName.toLowerCase();
+      if (tag === "button") return "block"; // our buttons are full width
+      return "block";
+    }
+
+    function updateSelectOptions(lang) {
+      const roleSelect = document.getElementById("role");
+      const adminOption = roleSelect.querySelector('option[value="admin"]');
+      const teacherOption = roleSelect.querySelector('option[value="teacher"]');
+      const studentOption = roleSelect.querySelector('option[value="student"]');
+
+      if (lang === "en") {
+        adminOption.textContent = "Admin";
+        teacherOption.textContent = "Teacher";
+        studentOption.textContent = "Student";
+      } else {
+        adminOption.textContent = "مسؤول";
+        teacherOption.textContent = "معلم";
+        studentOption.textContent = "طالب";
+      }
+    }
+
+    function handleLogin(event) {
+      event.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const role = document.getElementById("role").value;
+
+      if (!email || !password) {
+        const lang = document.documentElement.lang;
+        alert(lang === "en" ? "Please fill in all fields." : "يرجى ملء جميع الحقول.");
+        return;
+      }
+
+      const redirectMap = {
+        admin: "admin.html",
+        teacher: "teacher.html",
+        student: "student.html"
+      };
+
+      window.location.href = redirectMap[role];
+    }
+
+    // Wire submit + initialize
+    document.getElementById("loginForm").addEventListener("submit", handleLogin);
+    window.addEventListener("load", () => toggleLanguage(document.documentElement.lang || "en"));
+  </script>
 
 </body>
 </html>
