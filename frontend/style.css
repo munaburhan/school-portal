@@ -107,7 +107,12 @@ header button:hover {
 
     border-right: 1px solid var(--border);
     flex-shrink: 0;
+     text-decoration: none;
+    color: inherit;
+    display: block;
 }
+
+
 
 .sidebar ul {
     list-style: none;
