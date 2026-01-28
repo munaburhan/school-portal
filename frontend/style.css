@@ -1,5 +1,6 @@
-/* ===== RESET & BASE STYLES ===== */
-/* Provides a clean foundation across browsers */
+/* =========================
+   RESET & BASE STYLES
+   ========================= */
 
 * {
     margin: 0;
@@ -7,23 +8,50 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
-    line-height: 1.6;
+:root {
+    /* Layout sizing */
+    --sidebar-width: 200px;
+
+    /* Colors */
+    --bg-page: #f5f5f5;
+    --bg-surface: #ffffff;
+    --text-main: #333;
+    --text-muted: #555;
+
+    --header-bg: #2c3e50;
+    --footer-bg: #34495e;
+    --sidebar-bg: #ecf0f1;
+
+    --border: #bdc3c7;
+    --accent: #3498db;
 }
 
-/* ===== HEADER ===== */
-/* Top navigation bar spanning full width */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    line-height: 1.6;
+
+    /* Makes footer stick to bottom without magic height math */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* =========================
+   HEADER
+   ========================= */
 
 header {
-    background-color: #2c3e50;
-    color: white;
+    background-color: var(--header-bg);
+    color: #fff;
     padding: 1rem 2rem;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -32,19 +60,24 @@ header h1 {
     font-weight: 600;
 }
 
-header div {
+/* NOTE: This targets the header's button container.
+   Later we can replace with a class like .lang-switch for precision. */
+header > div {
     display: flex;
     gap: 0.5rem;
 }
 
 header button {
     background-color: #34495e;
-    color: white;
+    color: #fff;
     border: none;
+
     padding: 0.5rem 1rem;
     border-radius: 4px;
+
     cursor: pointer;
     font-size: 0.9rem;
+
     transition: background-color 0.2s ease;
 }
 
@@ -52,25 +85,27 @@ header button:hover {
     background-color: #1a252f;
 }
 
-/* ===== MAIN LAYOUT CONTAINER ===== */
-/* Flexbox container for sidebar + content arrangement */
-/* Automatically adapts to LTR/RTL via CSS logical properties */
+
+/* =========================
+   MAIN LAYOUT
+   ========================= */
 
 .container {
     display: flex;
-    flex-direction: row;
-    min-height: calc(100vh - 60px - 60px);
+    flex: 1; /* fills remaining height between header & footer */
 }
 
-/* ===== SIDEBAR ===== */
-/* Left sidebar for English (LTR), right sidebar for Arabic (RTL) */
-/* Flexbox flex-direction: row handles the automatic repositioning */
+
+/* =========================
+   SIDEBAR
+   ========================= */
 
 .sidebar {
-    width: 200px;
-    background-color: #ecf0f1;
+    width: var(--sidebar-width);
+    background-color: var(--sidebar-bg);
     padding: 1.5rem 1rem;
-    border-right: 1px solid #bdc3c7;
+
+    border-right: 1px solid var(--border);
     flex-shrink: 0;
 }
 
@@ -81,56 +116,68 @@ header button:hover {
 .sidebar li {
     padding: 0.75rem 1rem;
     margin-bottom: 0.5rem;
-    background-color: white;
+
+    background-color: var(--bg-surface);
     border-radius: 4px;
+
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+
     border-left: 3px solid transparent;
 }
 
 .sidebar li:hover {
     background-color: #d5dbdb;
-    border-left-color: #3498db;
+    border-left-color: var(--accent);
 }
 
-/* ===== MAIN CONTENT AREA ===== */
-/* Grows to fill available space */
+
+/* =========================
+   CONTENT
+   ========================= */
 
 .content {
     flex: 1;
     padding: 2rem;
-    background-color: white;
+    background-color: var(--bg-surface);
 }
 
 .content h2 {
-    color: #2c3e50;
+    color: var(--header-bg);
     margin-bottom: 1rem;
     font-size: 1.8rem;
 }
 
 .content p {
-    color: #555;
+    color: var(--text-muted);
     margin-bottom: 1rem;
 }
 
-/* ===== FOOTER ===== */
-/* Bottom footer spanning full width */
+
+/* =========================
+   FOOTER
+   ========================= */
 
 footer {
-    background-color: #34495e;
-    color: white;
+    background-color: var(--footer-bg);
+    color: #fff;
+
     text-align: center;
     padding: 1.5rem;
+
     font-size: 0.9rem;
-    border-top: 1px solid #2c3e50;
+    border-top: 1px solid var(--header-bg);
 }
 
-/* ===== RTL SUPPORT ===== */
-/* When dir="rtl" is set on <html>, these rules automatically adjust layout */
 
+/* =========================
+   RTL SUPPORT
+   ========================= */
+
+/* Keep the same layout, just swap borders + hover accent side */
 html[dir="rtl"] .sidebar {
     border-right: none;
-    border-left: 1px solid #bdc3c7;
+    border-left: 1px solid var(--border);
 }
 
 html[dir="rtl"] .sidebar li {
@@ -139,5 +186,5 @@ html[dir="rtl"] .sidebar li {
 }
 
 html[dir="rtl"] .sidebar li:hover {
-    border-right-color: #3498db;
+    border-right-color: var(--accent);
 }
