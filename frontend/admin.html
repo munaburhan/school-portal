@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- Header -->
+     <header>
+        <h1 id="title-en">School Portal</h1>
+        <h1 id="title-ar" style="display:none;">بوابة المدرسة</h1>
+
+        <!-- Language Switch -->
+        <div>
+            <button onclick="setEnglish()">EN</button>
+            <button onclick="setArabic()">AR</button>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="container">
+
+        <!-- Sidebar -->
+              <nav class="sidebar">
+            <!-- English Menu -->
+<ul id="menu-en">
+    <li><a href="admin.html">Admin Dashboard</a></li>
+    <li><a href="teacher.html">Teacher Dashboard</a></li>
+    <li><a href="student.html">Student Dashboard</a></li>
+    <li><a href="index.html">Home</a></li>
+</ul>
+
+            <!-- Arabic Menu -->
+            <ul id="menu-ar" style="display:none;">
+    <li><a href="admin.html">لوحة تحكم الإدارة</a></li>
+    <li><a href="teacher.html">لوحة تحكم المعلم</a></li>
+    <li><a href="student.html">لوحة تحكم الطالب</a></li>
+    <li><a href="index.html">الرئيسية</a></li>
+</ul>
+        </nav>
+
+        <!-- Content Area -->
+        <main class="content">
+            <h2 id="content-title-en">Admin Dashboard</h2>
+            <h2 id="content-title-ar" style="display:none;">لوحة تحكم المسؤول</h2>
+
+            <p id="content-text-en">
+                Welcome to the admin dashboard. Manage all school operations here.
+            </p>
+
+            <p id="content-text-ar" style="display:none;">
+                مرحبًا بك في لوحة تحكم المسؤول. أدر جميع عمليات المدرسة من هنا.
+            </p>
+        </main>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p id="footer-en">© 2026 School Portal</p>
+        <p id="footer-ar" style="display:none;">© 2026 بوابة المدرسة</p>
+    </footer>
+
+    <!-- Language Script -->
+    <script>
+        function setEnglish() {
+            document.documentElement.lang = "en";
+            document.documentElement.dir = "ltr";
+
+            toggleLanguage("en");
+        }
+
+        function setArabic() {
+            document.documentElement.lang = "ar";
+            document.documentElement.dir = "rtl";
+
+            toggleLanguage("ar");
+        }
+
+        function toggleLanguage(lang) {
+            const enElements = document.querySelectorAll("[id$='-en']");
+            const arElements = document.querySelectorAll("[id$='-ar']");
+
+            enElements.forEach(el => el.style.display = lang === "en" ? "block" : "none");
+            arElements.forEach(el => el.style.display = lang === "ar" ? "block" : "none");
+        }
+    </script>
+
+</body>
+</html>
