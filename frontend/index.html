@@ -1,18 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <title>School Portal</title>
 </head>
+
 <body>
 
+    <!-- Header -->
     <header>
-        <h1>School Portal</h1>
+        <h1 id="title-en">School Portal</h1>
+        <h1 id="title-ar" style="display:none;">بوابة المدرسة</h1>
+
+        <!-- Language Switch -->
+        <div>
+            <button onclick="setEnglish()">EN</button>
+            <button onclick="setArabic()">AR</button>
+        </div>
     </header>
 
+    <!-- Main Layout -->
     <div class="container">
+
+        <!-- Sidebar -->
         <nav class="sidebar">
-            <ul>
+            <!-- English Menu -->
+            <ul id="menu-en">
                 <li>Dashboard</li>
                 <li>Students</li>
                 <li>Teachers</li>
@@ -20,18 +33,64 @@
                 <li>Attendance</li>
                 <li>Grades</li>
             </ul>
+
+            <!-- Arabic Menu -->
+            <ul id="menu-ar" style="display:none;">
+                <li>لوحة التحكم</li>
+                <li>الطلاب</li>
+                <li>المعلمون</li>
+                <li>الصفوف</li>
+                <li>الحضور</li>
+                <li>الدرجات</li>
+            </ul>
         </nav>
 
+        <!-- Content Area -->
         <main class="content">
-            <h2>Dashboard</h2>
-            <p>Welcome to the school management system.</p>
+            <h2 id="content-title-en">Dashboard</h2>
+            <h2 id="content-title-ar" style="display:none;">لوحة التحكم</h2>
+
+            <p id="content-text-en">
+                Welcome to the school management system.
+            </p>
+
+            <p id="content-text-ar" style="display:none;">
+                مرحبًا بك في نظام إدارة المدرسة.
+            </p>
         </main>
+
     </div>
 
+    <!-- Footer -->
     <footer>
-        <p>© 2026 School Portal</p>
+        <p id="footer-en">© 2026 School Portal</p>
+        <p id="footer-ar" style="display:none;">© 2026 بوابة المدرسة</p>
     </footer>
 
-</body>
+    <!-- Language Script -->
+    <script>
+        function setEnglish() {
+            document.documentElement.lang = "en";
+            document.documentElement.dir = "ltr";
 
+            toggleLanguage("en");
+        }
+
+        function setArabic() {
+            document.documentElement.lang = "ar";
+            document.documentElement.dir = "rtl";
+
+            toggleLanguage("ar");
+        }
+
+        function toggleLanguage(lang) {
+            const enElements = document.querySelectorAll("[id$='-en']");
+            const arElements = document.querySelectorAll("[id$='-ar']");
+
+            enElements.forEach(el => el.style.display = lang === "en" ? "block" : "none");
+            arElements.forEach(el => el.style.display = lang === "ar" ? "block" : "none");
+        }
+    </script>
+
+</body>
 </html>
